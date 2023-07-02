@@ -31,11 +31,35 @@ def page_intro():
 
     st.write(
         """
-    3 actors from the French government with different motivations had a discussion on how to reduce severe accidents. \n
-    The transport minister wants to reduce by all means, the number of severe accidents and is indifferent to the budget 
-    allocated to related decisions. The economy minister wants to optimize expenses for reducing severe accidents.
-    Finally, the analyst expert suggests an in-between solution where expenses would both reduce the number of severe accidents 
-    without being related to too many minor accidents.
+        As part of our data-scientist course from Datascientest (promotion June 2022), we conducted this project under 
+        supervision of Alban Thuet.
+        \n \n
+        Whenever there is at least one injured people in an accident, French police must make a summary and document the conditions 
+        of the accident. This information is then stored in a database listing all accidents occurring in France every year. 
+        From this database, one can predict for example risk of accident, severity of injury in an accident, 
+        infrastructures related to accidents…
+        \n \n
+        Accidents severity and road death is an important topic directly impacted by traffic regulations and 
+        infrastructures maintenance. Absence of light, weather, position in the car are only a few factors impacting
+        the degree of injury in an accident or the difficulty for a driver to ride correctly.
+        \n \n
+        Having both a statistical background and appetence for machine learning and especially classification, we decided to 
+        work on this classification project to put into practice and to improve our data-science skills.
+    """
+    )
+
+    st.markdown(
+        "<h4 style='text-align: center; color: black;'>Case Study </h4>",
+        unsafe_allow_html=True,
+    )
+
+    st.write(
+        """
+We built a fictive case-study where 3 players from the French ministry with different motivations had a discussion on how to
+reduce severe accidents. The minister of transport wants to reduce the number of severe accidents as much as possible and is 
+indifferent to the budget allocated to related decisions. The minister of economy wants to optimise expenditures to reduce the 
+number of severe accidents. Finally, the expert analyst proposes an in-between solution to ensure that the expenditures to reduce 
+severe accidents do not involve too many minor accidents.
     """
     )
     col1, col2, col3 = st.columns([1, 3, 1])
@@ -56,10 +80,9 @@ def page_intro():
 
     st.write(
         """
-    The objective of this project was to first design a classification model with best overall performances to predict 
-    severe accidents (at least one hospitalized or dead victim) and then to calibrate it for the purpose of all 3 actors 
-    from the government. In addition to these objectives, we looked into details, which factors each actor would consider. 
-    """
+The project aims to first design a classification model with best overall performances for predicting severe accidents
+(at least one hospitalized or killed in an accident) and then to calibrate it for the purpose of all 3 players in the ministry. 
+In addition to these objectives, we investigated, which concrete decisions players could make to lower accidents severity.    """
     )
 
     st.markdown(
@@ -69,11 +92,12 @@ def page_intro():
 
     st.write(
         """
-    We used the data from traffic regulation interdepartmental national observatory 
-    (“Observatoire national interministériel de la sécurité routière”), self-service provided and extracted 
-    from BAAC documents ([“Bulletins d’Analyse des Accidents Corporels de la circulation”](https://www.data.gouv.fr/fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2021/)). 
-    Four tables were documented between 2005 and 2020 with different types of information: 
-    “caracteristics”, “places”, “users”, “vehicles”.
+        The data on which our project is based derives from the Observatoire National Interministériel de la Sécurité 
+        [National Cross-ministry Safety Observatory]. The databases, extracted from the BAAC 
+        (([“Bulletins d’Analyse des Accidents Corporels de la circulation”]
+        (https://www.data.gouv.fr/fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2021/)). 
+        Four tables were documented between 2005 and 2020 with different types of information:
+        “characteristics”, “places”, “users”, “vehicles”.
     """
     )
 
@@ -124,13 +148,13 @@ def page_viz():
 
         st.write(
             """
-        Among all victims, we can observe that there are very few deaths (3%) but notably an important proportion of hospitalized victims (20%). 
-        When we keep the most severe form of injury by accident, we end up with a balanced prevalence of 42% of accidents with at least one 
-        hospitalized/dead victim. \n
-        First, we assessed visually the link between the explanatory variables against the most severe injury by accident. 
-        When we think about accidents, we can think of several causes impacting the severity, including for example: 
-        geographic, visibility and vehicle information.
-        """
+Among all victims, we can observe that there are very few deaths (3%) but notably an important proportion of hospitalized victims (20%). 
+When we keep the most severe form of injury by accident, we end up with a balanced prevalence of 42% of accidents with at least one 
+hospitalized/killed victim. \n \n
+
+First, we assessed visually the link between the explanatory variables against the most severe injury by accident.
+When we think about accidents, we can think of several causes impacting the severity, including for example: geographic,
+visibility and vehicle information.        """
         )
 
     with tab2:
@@ -141,9 +165,9 @@ def page_viz():
 
         st.write(
             """
-        Defining severity of accident from 1 to 4, 1 being no injury and 4 being death, we can have an overview of the mean severity of accident 
-        by department. We also compared the mean severity of these accidents to the population density. 
-        """
+Defining accident severity from 1 to 4, 1 being no injury and 4 being killed, we can have an overview of 
+the mean accident severity by department. We also compared the mean severity of these accidents to the population density.        
+"""
         )
 
         col19, col20, col21 = st.columns([1, 6, 1])
@@ -159,13 +183,13 @@ def page_viz():
 
         st.write(
             """
-        We can observe that the densest department (Paris, Marseille, Lyon) have a low mean severity of injury. 
-        Conversely, departments with the worst mean severity of injury (Mayenne, Landes) are the least dense. 
-        It seems that the severity is negatively correlated to population density.
-        \n \n
-        The department density information is linked to the road category, for example there are more national roads 
-        near small cities and more departmental roads in big cities.
-        """
+We can see that the departments hosting France’s three largest cities (Paris, Marseille, Lyon) are
+among the most densely populated, with the lowest average severity of injuries. Conversely, the 
+departments with the most severe injuries (Mayenne, Landes, for example) are among the least densely populated. 
+This gives the impression that gravity is anti-correlated with population density.
+\n \n
+The department density information is linked to the road category, for example there are more national roads near small 
+cities and more departmental roads in big cities.        """
         )
         col25, col26, col27 = st.columns([1, 4, 1])
 
@@ -180,9 +204,8 @@ def page_viz():
 
         st.write(
             """
-        This intuition seems correct since the communal roads have far less cases of death than departmental or national ones. 
-        The type of road is also linked to the type of agglomeration.
-        """
+This intuition seems correct since the communal roads have far less cases of death than departmental or 
+national ones. The type of road is also linked to the type of agglomeration.        """
         )
 
         col60, col61, col62 = st.columns([1, 3, 1])
@@ -209,10 +232,9 @@ def page_viz():
 
         st.write(
             """
-        First, we can observe that almost all agglomeration roads are communal ones while outside of agglomeration, 
-        it is mainly departmental roads. 
-        Then we can see that inside of agglomerations, the risk of severe injury is much lower than outside of agglomerations. 
-        """
+First, we can observe that almost all agglomeration roads are communal ones while outside of agglomeration, it 
+is mainly departmental roads. Then we can see that inside of agglomerations, the risk of severe injury is much 
+lower than outside of agglomerations.        """
         )
 
     with tab3:
@@ -223,15 +245,14 @@ def page_viz():
 
         st.write(
             """
-        When driving, the main sense is sight. The hour of the day and brightness are directly impacting the sense of sight.
-        \n \n
-        In the following part, we have a first figure displaying proportion of injury severity by hour of the day. 
-        The second figure is displaying fold severity, for each hour of the day, we divide the proportion of injury severity 
-        by the overall proportion of this injury severity, this results into a fold. Fold means ‘how many times more risk of being part 
-        of an injury group at a specific hour compared to overall proportion of this severity’. For example, a fold of 2 for death injury 
-        at 2am means that there are 2 times more risk to die for accidents at 2am compared to overall proportion. 
-
-        """
+One of the essential senses when driving is sight,
+so we looked at two variables linked to visibility: time of day and lighting at the accident scene.
+\n \n
+In the figure below, we have first displayed the proportion of injury severity per hour of the day. 
+The second figure is displaying severity fold. This criterion corresponds to ‘how many times more risk of being 
+part of an injury group at a specific hour compared to overall proportion of this severity. For example, a fold of
+2 for death severity at 2am means that there are 2 times more risk to die for accidents occurring at 2am compared to 
+overall proportion.        """
         )
         col28, col29, col30 = st.columns([1, 4, 1])
 
@@ -245,16 +266,18 @@ def page_viz():
             st.write(" ")
         st.write(
             """
-        We can observe a trend from 10pm to 6am, where proportion of death and hospitalized cases are above overall proportion, 
-        with a peak reached at 3 to 5 am. This suggests that the light but also the journey cause may have an indirect impact on severity. 
-        Taking kids to school, being stuck in traffic jam or going on holiday during the night tired are activities happening at specific 
-        hours of the day and for which we can expect a different level of attention from the driver.
-        \n \n
-        On the second figure, we can observe 2 times more risks of death during an accident between 2 and 5am.
-        \n \n
-        We then look at brightness during accidents.
-
-        """
+In the first figure, we can directly observe a trend: from 10 pm to 6 am, 
+the highest proportions of death and hospitalized cases occur, with a peak reached at 3 to 5
+am. This suggests that brightness and activity (reason for taking the car) may indirectly impact accident 
+severity and time of day. Taking one’s children to school during the day, being stuck in traffic during rush hour, 
+or going on vacation in the middle of the night when one is tired are activities specific to certain times of the 
+day and for which we can imagine a different level of attention.
+\n \n
+The second figure confirms the relationships observed on the first graph, with a fold greater than 
+two between 2 and 5 am, implying two times the risk of having a person killed than the average at these times.
+\n \n
+We now turn our attention to luminosity at the time of the accident. The following figure combination 
+works in the same way as the previous one but displays the type of lighting at the time of the accident.        """
         )
         col31, col32, col33 = st.columns([1, 4, 1])
 
@@ -268,8 +291,8 @@ def page_viz():
             st.write(" ")
         st.write(
             """
-        We observe a heavily riskier type of accident during the night when there is no light with a fold of 3.
-
+We can see that the ‘night without light’ category is by far the most impactful, with 16% of accidents 
+resulting in at least one fatality, three times more than the average, as can be seen on the folds heatmap on the right.
         """
         )
 
@@ -281,10 +304,10 @@ def page_viz():
 
         st.write(
             """
-        When we think about injury severity, we think of protections and thus of vehicle type. 
-        Being inside of a heavy protected vehicle may feel safer than being on a motorbike. However, being impacted by a 
-        heavy vehicle like a train may represent a high risk of death whatever the vehicle driving during the collision.
-        """
+When we think about injury severity, we think of protections and thus of vehicle type. 
+Being inside of a heavy protected vehicle may feel safer than being on a motorbike. However, 
+being impacted by a heavy vehicle like a train may represent a high risk of being killed whatever the vehicle 
+driving during the collision.        """
         )
         col66, col67, col68 = st.columns([1, 2, 1])
 
@@ -299,10 +322,9 @@ def page_viz():
 
         st.write(
             """
-        As expected, even though only a few accidents with trains were reported, they represent the type of vehicle with the largest 
-        risk of death or hospitalization. 
-        ‘HPV’ category corresponds to 3.5 metric tons vehicles, we can make the same hypothesis as for the trains (weight and speed).
-        """
+It emerges here that trains very often cause fatalities (but there are extremely few accidents involving trains), as do 
+HGVs (which regularly travel on roads previously seen as less “risky” (freeways and trunk roads). We can therefore assume 
+that vehicle characteristics (weight, speed in particular) are essential in understanding the severity of accidents.        """
         )
 
     with tab5:
@@ -313,13 +335,14 @@ def page_viz():
 
         st.write(
             """
-        We last assessed the link between each pair of explanatory variables. The rationale was to only keep one variable 
-        when two or more had a strong link in order to use specific models handling only variables with low-moderate relation, 
-        for example penalized logistic models like lasso or elastic-net.
-        \n \n
-        The following figure corresponds to a heatmap cross-referring pairs of explanatory variables, 
-        Cramer’s V value is computed for this pair. This value is measure of association between two categorical variables, 
-        ranging from 0 to 1, 0 being a low association and 1 being a strong association.
+We last assessed the link between each pair of explanatory variables. The rationale was to only keep one variable when two or more 
+had a strong link in order to use specific models handling only variables with low-moderate relation, for example penalized logistic 
+models like lasso or elastic-net.
+\n \n
+The following figure corresponds to a heatmap cross-referring pairs of explanatory variables, Cramer’s V value is computed 
+for this pair. This value is the measure of association between two categorical variables, ranging from 0 to 1. A high Cramer’s
+V indicates a potentially strong relationship between two variables, while a value close to 0 shows an a priori weak relationship 
+between two categorical variables.
 
         """
         )
@@ -336,11 +359,13 @@ def page_viz():
 
         st.write(
             """
-        As expected, we were right about the relation between hour of the day and brightness, but we can also observe a strong relation 
-        between the variable ‘agglomeration’ and ‘brightness’ one. On the second heatmap, we observe a strong relation between the road slope 
-        and curvature. Indeed, there are rarely corners in slopes. On the last heatmap, some variable sharing the same information are 
-        highlighted, for example victim position and user category.
-
+As we can see, these graphs confirm the relationship we had premeditated between the variable 
+time and brightness but also indicate a strong relationship between the variable ‘agglomeration’ (yes/no) and ‘brightness’. 
+The second heatmap shows a strong relationship between slope and the presence of bends in the road. Indeed, there are rarely any 
+bends on a steep slope.
+\n \n
+On the third heatmap, we observe logical relationships on certain variables that share standard information 
+(e.g. victim’s place ‘place’ and car user category ‘catu’).
         """
         )
 
@@ -361,16 +386,18 @@ def page_model():
 
         st.write(
             """
-            Our three objectives before starting modelling, was to 1- Strengthen our dataset with new and appropriate variables, 
-            2- Having appropriate variables for any of the models used and 3- Being able to launch quickly model tuning.
-            \n \n
-            In order to strengthen our dataset, we created numerous variables for which we suspected a link with our target variable, 
-            including for example accident occurring during a work-free day, age of the driver during the accident, 
-            number of inhabitants of the city where the accident occurred, number of victims on the same side as the impact collision.
-            \n \n
-            For the purpose of having appropriate variable for modelling, we then used “one-hot encoding” to replace all categorical 
-            variables by bivariate 0/1 variables. One-hot encoding purpose is to give the same strength to each modality. 
-            Values of 1 correspond to the presence of the modality while 0 values correspond to the absence of the modality.
+Our three objectives before starting modelling, was to 1- Strengthen our 
+dataset with new and appropriate variables, 2- Having appropriate variables for any of the models 
+used and 3- Being able to launch quickly model tuning.
+\n \n
+In order to strengthen our dataset, we created numerous variables for which we suspected a link with our target variable, 
+including for example accident occurring during a work-free day, age of the driver during the accident, number of inhabitants 
+of the city where the accident occurred, number of victims on the same side as the impact collision.
+\n \n
+For the purpose of having appropriate variable for modelling, we then used “one-hot encoding” to replace 
+all categorical variables by bivariate 0/1 variables. One-hot encoding purpose is to give the same strength to 
+each modality. Values of 1 correspond to the presence of the modality while 0 values correspond to the absence of the modality.
+
 
         """
         )
@@ -388,17 +415,22 @@ def page_model():
 
         st.write(
             """
-            In addition to one-hot encoding, we removed variables with too low completion prevalence, 
-            variables for which filling could easily be biased, liked road width. 
-            When several variables were too much related (Cramer’s V value>0.4), we only kept the one with the strongest 
-            relationship with our target variable. Then we removed any row with missing values. 
-            The rationale for these two last choices was to be able to launch any machine learning model on our dataset.
-            \n \n
-            The last pre-processing step was to reduce the number of features from our dataset in order to be able to 
-            launch quickly model tuning. For this purpose, we used XGBoost feature importance and ranked each variable 
-            ‘weight’, ‘gain’, ‘cover’, ‘total gain’ and ‘total cover’. We removed variables located the most times among 
-            the last ranks until we only had 70 features remaining.
-
+In addition to one-hot encoding, we removed variables with too low completion prevalence, 
+variables for which filling could easily be biased, liked road width. When several variables were 
+too much related (Cramer’s V value>0.4), we only kept the one with the strongest relationship with our 
+target variable. Then we removed any row with missing values. The rationale for these two last choices 
+was to be able to launch any machine learning model on our dataset.
+\n \n
+The last pre-processing step was to reduce the number of features from our dataset in order 
+to be able to launch quickly model tuning. For this purpose, we used XGBoost feature importance and
+ranked each variable ‘weight’, ‘gain’, ‘cover’, ‘total gain’ and ‘total cover’. We removed variables 
+located the most times among the last ranks until we only had 70 features remaining.
+\n \n
+After these three pre-processing steps, we ended-up with a completely filled dataset with 70 features for 
+836 553 accidents. Target variable prevalence remained at 42%.
+\n \n
+This complete dataset was split into two set: a training dataset with 669 242 accidents (80%) for 
+initiating models, and a test set of 167 311 accidents (20%) for evaluating models.
         """
         )
         #        col10, col11, col12 = st.columns([1, 3, 1])#
@@ -411,17 +443,6 @@ def page_model():
 
         #       with col12:
         #          st.write(" ")
-
-        st.write(
-            """
-            After these three pre-processing steps, we ended-up with a completely filled dataset with 70 features for 836 553 accidents. 
-            Target variable prevalence remained at 42%.
-            \n \n
-            This complete dataset was split into two set: a training dataset with 669 242 accidents (80%) for initiating models,
-            and a test set of 167 311 accidents (20%) for evaluating models.
-
-        """
-        )
 
     with tab7:
         st.markdown(
@@ -436,6 +457,12 @@ def page_model():
 
         col13, col14, col15 = st.columns([1, 1, 1])
 
+        st.write(
+            """        
+We are dealing with a binary classification issue. We must develop a model to classify accidents as benign 
+or severe depending on the explanatory variables.            """
+        )
+
         with col13:
             st.write(" ")
 
@@ -447,9 +474,9 @@ def page_model():
 
         st.write(
             """        
-        The predictions of a model are compared to actual accident values, this allows to compute predictive performance of a model. 
-        Some models output a probability for an accident of being severe, a threshold is needed to transform this probability into 
-        a binary prediction.)
+The predictions of a model are compared to actual accident values, this allows to compute predictive performance of a model. 
+Some models output a probability for an accident of being severe, a threshold is needed to transform this probability into a 
+binary prediction.
             """
         )
 
@@ -466,8 +493,8 @@ def page_model():
 
         st.write(
             """        
-            From this confusion matrix, we can compute several performance indicators. 
-            """
+Each of the following indicator can be calculated using the formulas below for a contingency table cross-referencing observed 
+values (serious accidents) with model predictions (accident prediction).            """
         )
 
         col40, col41, col42 = st.columns([1, 4, 1])
@@ -483,11 +510,12 @@ def page_model():
 
         st.write(
             """        
-            A ROC curve can be traced from all positive and negative recalls for each model threshold. 
-            From this ROC curve, we can compute the AUC (Area Under the Curve), it corresponds to our primary metric of interest. 
-            AUC ranges from 0.5 (random predictions) to 1 (perfect predictions), we want to maximize AUC.
-            For this project, a large AUC would mean that we predict well accident severity for numerous thresholds.       
-            """
+We obtain a curve by displaying the positive and negative recall associated with each threshold on a graph.
+
+A ROC curve is obtained by displaying the positive and negative recall associated with each model threshold. From this ROC curve, 
+we can compute the AUC (Area Under the Curve), it corresponds to our primary metric of interest. AUC ranges from 0.5 
+(random predictions) to 1 (perfect predictions), we want to maximize AUC. For this project, a large AUC would mean that we 
+predict well accident severity for numerous thresholds.            """
         )
         col43, col44, col45 = st.columns([1, 1, 1])
 
@@ -507,13 +535,12 @@ def page_model():
 
         st.write(
             """        
-        For model tuning, the idea is to train a model through cross-validation with the training set and to test its performances 
-        on the test set. Cross-validation corresponds to splitting the training set into k folds, we train a model on k-1 
-        of these folds and we validate the model on the remaining fold. This process is repeated k times in order to validate 
-        models on each fold by computing a metric, here we use the AUC. The mean of the k metrics is computed and a training metric
-        is outputted. It is important to reach the best metrics value on the independent test set for which none of the data was used 
-        during the training process.  \n
-        Example of cross-validation with k=5 folds and AUC metric. """
+For model tuning, the idea is to train a model through cross-validation with the training set and to test its performances 
+on the test set. Cross-validation consists in dividing our training set into k folds. The model will be trained
+k times on all but one fold and then validated on the last fold. This process is repeated k times in order to 
+validate models on each fold by computing a metric, here we use the AUC. The average of the k metrics is computed, and
+a training metric is outputted. It is important to reach the best metrics value on the independent test set for which 
+none of the data was used during the training process."""
         )
 
         col200, col201, col202 = st.columns([1, 3, 1])
@@ -529,12 +556,11 @@ def page_model():
 
         st.write(
             """
-        For time saving constraints, we decided to use 3 folds during cross-validation. 
-        A larger number of folds could refine metrics estimation but at the cost of an extended code execution.
-
-        We decided to maximize AUC performances on test set and then to pick the models with best AUCs, in order to finally 
-        calibrate them for our case-study.
-        
+For time saving constraints, we decided to use 3 folds during cross-validation. A larger number
+of folds could refine metrics estimation but at the cost of an extended code execution.
+\n \n
+We decided to maximize AUC performances on test set and then to pick the models with best AUCs, 
+in order to finally calibrate them for our case-study.        
         """
         )
 
@@ -545,9 +571,10 @@ def page_model():
 
         st.write(
             """        
-        We decided to assess several classification machine learning methods for which algorithmic mechanism differ. 
-        Here is a non-exhaustive list of advantages and drawback for each method.       
-        """
+We decided to test several algorithms that could be used for classification, each with different algorithmic mechanics. 
+They all have advantages and disadvantages, so we wanted to explore them. The following is a partial list of the advantages 
+and disadvantages of the methods tested.      
+"""
         )
 
         col46, col47, col48 = st.columns([1, 4, 1])
@@ -563,8 +590,9 @@ def page_model():
 
         st.write(
             """        
-        We assessed methods with different hyperparameter values. Due to its very time-consuming aspect, the SVM has not been 
-        retained for tuning."""
+The following are the tuning parameters we tested for each model. SVM was not chosen for tuning, as it takes a 
+long time to run, given the size of our database.
+"""
         )
 
         col49, col50, col51 = st.columns([1, 4, 1])
@@ -580,11 +608,10 @@ def page_model():
 
         st.write(
             """ 
-        Concerning the MLP, there is no parameter to tune, the model was initialized with two Dense layers, 35 neurones, 
-        2 final classes and tanh/softmax activation functions.
-        \n \n
-        We can observe the best AUC values reached by each model after tuning.
-
+For the MLP, no parameters had to be tuned. The model was initialised with two dense layers with some neurons of 35 and 2
+final classes with tanh and softmax activation functions (the latter providing probabilities).
+\n \n
+We can observe the best AUC values reached by each model after tuning.
         """
         )
 
@@ -601,18 +628,24 @@ def page_model():
 
         st.write(
             """        
-        Best performances were observed for XGBoost, LGBM, MLP and Elastic Net after tuning.
-        \n \n
-        For ease of use, we decided to exclusively keep performing and low time-consuming for model comparison in the case study: 
-        XGBoost, LGBM and Elastic Net.
-        """
+Best performances were observed for XGBoost, LGBM, MLP and Elastic Net after tuning.
+\n \n
+For ease of use, we decided to exclusively keep performing and low time-consuming for model comparison in the case study: 
+XGBoost, LGBM and Elastic Net.        """
         )
 
 
 def page_case_study():
     st.markdown(
-        "<h2 style='text-align: center; color: black;'> Case Study </h2>",
+        "<h2 style='text-align: center; color: black;'> Model calibration: Answer to each player of the ministry </h2>",
         unsafe_allow_html=True,
+    )
+
+    st.write(
+        """
+Now that we now predictive performances of our best models, we need to understand what the real use of such models could 
+be so let’s get back to our case-study problematic.   
+"""
     )
 
     st.markdown(
@@ -622,9 +655,10 @@ def page_case_study():
 
     st.write(
         """
-        In order to make a connection between our models and the case-study, we displayed the distribution of predictive 
-        probabilities of XGBoost. These predictive probabilities are used for to compute confusion tables at each threshold of interest.
-    """
+In order to make a connection between our models and the case-study, we displayed the distribution of 
+predictive probabilities of XGBoost. These predictive probabilities are used to compute confusion tables at 
+each threshold of interest.   
+"""
     )
     col16, col17, col18 = st.columns([1, 4, 1])
 
@@ -639,16 +673,22 @@ def page_case_study():
 
     st.write(
         """
-        As a reminder, transport minister wants to reduce by all means, the number of severe accidents, in other terms maximizing positive recall. Economy minister wants to optimize expenses for reducing severe accidents, meaning that we must maximize positive precision for this specific case. Finally, the analyst expert suggests an in-between solution where expenses would both reduce the number of severe accidents without being related to too many minor accidents. From a statistical point of view, a solution for the latest would be using a Youden threshold associated with a maximization of the sum of positive and negative recalls.
-        \n \n
-        In order to keep a reasonable decision, we set to 80%, the positive recall to reach for the transport minister and to 80% the positive precision to reach for the economy minister.
-        \n \n
-        Two questions arise:
-        \n \n
-        What thresholds and which associated performances would we reach for each government actor?
-        \n \n
-        Which model would outperform other ones and optimize each problematic performance?
-    """
+As a reminder, the minister of transport aims to reduce the number of serious accidents as much as possible, 
+whatever the cost, in other terms maximizing positive recall. The minister of economy is aiming to optimise expenditures 
+to reduce the number of serious accidents, meaning that we must maximize positive precision for this specific case. 
+Finally, the expert analyst proposes an in-between solution to ensure that the expenditures incurred to reduce many 
+serious accidents do not involve too many minor accidents. From a statistical point of view, a solution for the latest 
+would be using a Youden threshold associated with a maximization of the sum of positive and negative recalls.
+\n \n
+In order to keep a reasonable decision, we set to 80%, the positive recall to reach for the minister of transport and to 
+80% the positive precision to reach for the minister of economy.
+\n \n
+Two questions arise:
+\n \n
+● What thresholds and which associated performances would we reach for each ministry player?
+\n \n
+● Which model would outperform other ones and optimize each problematic performance?    
+\n \n"""
     )
 
     st.markdown(
@@ -656,13 +696,14 @@ def page_case_study():
         unsafe_allow_html=True,
     )
 
+    col85, col86, col87 = st.columns([1, 4, 1])
+
     st.write(
         """
-        As an illustration of how to calibrate a model for each actor, we used the XGBoost predictions. 
-        We displayed each performance criteria against XGBoost thresholds in order to select optimal threshold, as follows.    
-        """
+As an illustration of how to calibrate a model for each player, we used the XGBoost predictions. 
+We displayed each performance criteria against XGBoost thresholds in order to select optimal threshold, as follows.   
+"""
     )
-    col85, col86, col87 = st.columns([1, 4, 1])
 
     with col85:
         st.write(" ")
@@ -680,9 +721,7 @@ def page_case_study():
 
     st.write(
         """
-        As an illustration of how to calibrate a model for each actor, we used the XGBoost predictions. 
-        We displayed each performance criteria against XGBoost thresholds in order to select optimal threshold, as follows.    
-        """
+We obtained the following performances for the calibrated XGBoost, Elastic-Net and LGBM."""
     )
     col55, col56, col57 = st.columns([1, 4, 1])
 
@@ -697,22 +736,22 @@ def page_case_study():
 
     st.write(
         """
-    For any problematic, XGBoost and LGBM attained similar performances and were outperforming Elast-Net.
-    \n \n
-    Now, we can for example focus on XGBoost and look at predictions by feature for the economy minister as a representative example.
-        """
+For any problematic, XGBoost and LGBM attained similar performances and were outperforming Elastic-Net.
+\n \n
+Now, we can for example focus on XGBoost and look at predictions by feature for the minister of economy as a representative example.        """
     )
 
     st.markdown(
-        "<h5 style='text-align: center; color: black;'>Decisions </h5>",
+        "<h5 style='text-align: center; color: black;'>Concrete decisions </h5>",
         unsafe_allow_html=True,
     )
 
     st.write(
         """
-    Once the model is set, we can have a look at which features had good performances so that, actors could make an infrastructure 
-    improvement proposition or change traffic regulation to reduce the number of severe accidents to the government. 
-    We decided to look specifically at the economy minister case.
+Once the model is set, we can have a look at which features had good performances so that, players 
+could make an infrastructure improvement proposition or change traffic regulation to reduce the number of severe 
+accidents to the ministry. We decided to look specifically at the minister of economy case.
+\n \n
     """
     )
     col77, col78, col79 = st.columns([1, 1.5, 1])
@@ -728,12 +767,12 @@ def page_case_study():
 
     st.write(
         """
-             The 3 features with the best positive precision were ‘level crossing’ (88.6%), ‘3 or more vehicles involved in the accident’ 
-    (84.4%) and ‘accident taking place outside of agglomeration’ (84.3%). 
-    For some features, it is quite hard to take decisions concerning how to lower the proportion of severe accidents. 
-    However, the economy minister could have suggested, for example, to assess the reason why level crossing and out-of-agglomeration 
-    cases have inflated severe accidents. Several reasons could explain this, like insisting on reducing the speed next to a level 
-    crossing, or reducing the speed in specific areas. 
+The 3 features with the best positive precision were ‘level crossing’ (88.6%), ‘3 or more vehicles involved in 
+the accident’ (84.4%) and ‘accident taking place outside of agglomeration’ (84.3%). For some features, it is quite 
+hard to take decisions concerning how to lower the proportion of severe accidents. However, the minister of economy could
+have suggested, for example, to assess the reason why level crossing and out-of-agglomeration cases have inflated severe 
+accidents. Several reasons could explain this, like insisting on reducing the speed next to a level crossing, or reducing 
+the speed in specific areas.
         """
     )
 
@@ -1201,6 +1240,11 @@ def page_conclu():
     with tab12:
         col193, col194, col195 = st.columns([1, 4, 1])
 
+        st.write(
+            """This project showcased that the French traffic 
+                 accident dataset has the potential to build models which could help interested parties to take concrete decisions. """
+        )
+
         with col193:
             st.write(" ")
 
@@ -1218,17 +1262,16 @@ def page_conclu():
 
         st.write(
             """
-        Our dataset degree of information is limited. For instance, we can’t know which driver is responsible of the accident, 
-        also some of the dataset variables’ completion may be imprecise (e.g. road width or presence of lights near the accident)
-        \n \n
-        Unlike recall, positive precision is not a monotone performance criteria. Positive precision is linked to positive observations 
-        prevalence. If we compared our performances when calibrating on precision with another independent dataset, we would not be sure 
-        to expect the same results.
-        \n \n
-        Let’s keep in mind that our model doesn’t predict traffic accidents but rather accident severity. This means that we could estimate 
-        the degree of severity of an accident considering involved features when the accident unfortunately already occurred but we would 
-        not be sure that the case-study actors’ decisions would have a direct impact on the proportion of severe accident.
-
+● Our dataset degree of information was limited. It was impossible to identify which driver/car was at fault in the accident. 
+Also some of the dataset variables’ completion was imprecise (e.g. road width or presence of lights near the accident).
+\n \n
+● Unlike recall, positive precision is not a monotone performance criterion. Positive precision is linked to positive 
+observations prevalence. We can therefore imagine that the calibration of our models depends exclusively on our dataset.
+\n \n
+● It should be borne in mind that our model does not predict road accidents but rather the severity of an accident as a 
+function of certain factors. This means that we could estimate the degree of severity of an accident considering involved 
+features when the accident unfortunately already occurred, but we would not be sure that the case-study players’ decisions
+would have a direct impact on the proportion of severe accident.
         """
         )
 
@@ -1251,9 +1294,10 @@ def page_conclu():
         st.write(
             """
 
-            During pre-processing, the completion was an important criteria for keeping a variable. Using a strong imputation method like 
-            multiple imputation would have saved some variables and dataset rows. This could have had a positive impact on test predictions. 
-            Comparing our current results to an imputation method strategy would be a nice way to verify this clue.
+● During pre-processing, when we selected our explanatory variables, one of the criteria was the variable’s completion rate. 
+If we had used a high-performance imputation method (e.g. multiple imputations), we could have saved the use of specific variables 
+but also increased the size of our dataset. 
+By evaluating the impact on the test dataset with/without imputation, we could have had an idea of the value of this lead.
             """
         )
         col106, col107, col108 = st.columns([2, 1, 2])
@@ -1269,9 +1313,9 @@ def page_conclu():
 
         st.write(
             """
-            During data pre-processing, we could have improved our feature selection decision to keep only 70 features. We decided to keep the 
-            features most frequently ranked among last ones by XGBoost feature importance. One possible amelioration would have been to keep 
-            the mean rank of each feature when we pool XGBoost feature importance.
+● During data pre-processing, we could have improved our feature selection decision to keep only 70 features.
+We decided to keep the features most frequently ranked among last ones by XGBoost feature importance.
+One possible amelioration would have been to keep the mean rank of each feature when we pool XGBoost feature importance.
             """
         )
 
@@ -1288,11 +1332,10 @@ def page_conclu():
 
         st.write(
             """
-            We observed a strong impact of some features like the ‘accident occuring in a village’. This could be a problem. 
-            Wrong predictions being caused by one strong feature could hide the other features expression and create a systematic bias. 
-            An idea would have been to add noise to the ‘accident occuring in a village’ feature upstream, before modelling step. 
-            This would have given less expression to this feature, and more expression to other ones (more variability and less bias).
-
+● We observed that some features had a much higher weight than others in poorly predicted accidents (e.g. village — yes/no). 
+This can be problematic, as the model can almost systematically predict an accident in the same way based on a feature, creating 
+a systematic prediction bias. One idea upstream would have been randomly transforming part of the feature’s values to reduce its 
+importance in the models and give more weight to the other features.
         """
         )
 
